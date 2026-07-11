@@ -1,216 +1,158 @@
 import streamlit as st
-from streamlit_option_menu import option_menu
+from utils.data_loader import load_data
 
-
+# --------------------------------------------------
+# Page Configuration
+# --------------------------------------------------
 st.set_page_config(
     page_title="ExoVision",
     page_icon="🌌",
     layout="wide",
-    initial_sidebar_state="expanded"
 )
 
+# --------------------------------------------------
+# Load CSS
+# --------------------------------------------------
+with open("css/style.css") as f:
+    st.markdown(
+        f"<style>{f.read()}</style>",
+        unsafe_allow_html=True
+    )
 
-def local_css(file_name):
+# --------------------------------------------------
+# Load Dataset
+# --------------------------------------------------
+df = load_data()
 
-    with open(file_name) as f:
+confirmed = (df["koi_disposition"] == "CONFIRMED").sum()
+candidate = (df["koi_disposition"] == "CANDIDATE").sum()
+false_positive = (df["koi_disposition"] == "FALSE POSITIVE").sum()
 
-        st.markdown(
-            f"<style>{f.read()}</style>",
-            unsafe_allow_html=True
-        )
-
-local_css("css/style.css")
-
+# --------------------------------------------------
+# Sidebar
+# --------------------------------------------------
 with st.sidebar:
 
-    st.sidebar.markdown("""
-        # 🚀 Mission Control
+    st.markdown("# 🚀 Mission Control")
 
-        ---
+    st.markdown("---")
 
-        """)
+    st.success("🟢 Systems Online")
 
-    selected = option_menu(
-        menu_title="ExoVision",
-        options=[
-            "Home",
-            "Dataset",
-            "EDA",
-            "Predict",
-            "Performance",
-            "Feature Importance",
-            "About Kepler"
-        ],
-        icons=[
-            "house",
-            "database",
-            "bar-chart",
-            "rocket",
-            "graph-up",
-            "stars",
-            "globe"
-        ],
-        default_index=0,
-    )
+    st.info(f"📊 {len(df):,} Records")
 
-    st.sidebar.markdown("---")
+    st.info(f"🧬 {df.shape[1]} Features")
 
-    st.sidebar.info("""
-        Mission Status
+    st.info("🤖 Machine Learning Ready")
 
-        🟢 Online
+    st.markdown("---")
 
-        Kepler Dataset Loaded
+    st.caption("Navigate using the Pages menu above.")
 
-        Machine Learning Ready
-    """)
+# --------------------------------------------------
+# Hero
+# --------------------------------------------------
+st.markdown("""
+<div class="hero">
 
-if selected=="Home":
+<div class="planet">🪐</div>
 
-    st.markdown("""
-        <div class="hero">
+<h1>ExoVision</h1>
 
-        <div class="planet">🌌</div>
+<p>
 
-        <h1>ExoVision</h1>
+Discover planets beyond our Solar System using
+Artificial Intelligence and NASA's Kepler Mission.
 
-        <p>
+</p>
 
-        Discover planets beyond our Solar System using
-        Machine Learning and NASA's Kepler Mission.
+</div>
+""", unsafe_allow_html=True)
 
-        </p>
+st.markdown(
+"""
+<div class="subtitle">
 
-        </div>
-        """, unsafe_allow_html=True)
+AI Powered Exoplanet Discovery Dashboard
 
-    st.markdown(
-        """
-        <div class='subtitle'>
-        AI Powered Kepler Exoplanet Discovery Dashboard
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
+</div>
+""",
+unsafe_allow_html=True
+)
 
+# --------------------------------------------------
+# Metric Cards
+# --------------------------------------------------
 
-c1,c2,c3,c4 = st.columns(4)
+c1, c2, c3, c4 = st.columns(4)
 
-with c1:
+cards = [
+    ("🌍", len(df), "Observations"),
+    ("🛰", confirmed, "Confirmed"),
+    ("⭐", candidate, "Candidates"),
+    ("❌", false_positive, "False Positive"),
+]
 
-    st.markdown(
-        """
-        <div class='metric-card'>
+for col, (icon, value, label) in zip((c1, c2, c3, c4), cards):
+    with col:
+        st.markdown(
+            f"""
+            <div class="metric-card">
 
-        <h2>🌍</h2>
+            <h2>{icon}</h2>
 
-        <h1>9564</h1>
+            <h1>{value:,}</h1>
 
-        <p>Observations</p>
+            <p>{label}</p>
 
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
-
-with c2:
-
-    st.markdown(
-        """
-        <div class='metric-card'>
-
-        <h2>🚀</h2>
-
-        <h1>92.64%</h1>
-
-        <p>Accuracy</p>
-
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
-
-with c3:
-
-    st.markdown(
-        """
-        <div class='metric-card'>
-
-        <h2>⭐</h2>
-
-        <h1>97.29%</h1>
-
-        <p>ROC AUC</p>
-
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
-
-with c4:
-
-    st.markdown(
-        """
-        <div class='metric-card'>
-
-        <h2>🤖</h2>
-
-        <h1>5</h1>
-
-        <p>Models</p>
-
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
-
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
 
 st.divider()
 
+# --------------------------------------------------
+# Mission Brief
+# --------------------------------------------------
 
-st.markdown("""
+st.markdown(
+"""
+<div class="section-title">
 
-    <div class="section-title">
+🛰 Mission Brief
 
-    🛰 Dataset Overview
+</div>
+""",
+unsafe_allow_html=True
+)
 
-    </div>
+st.markdown(
+"""
+<div class="glass">
 
-    """, unsafe_allow_html=True)
+ExoVision is a professional machine learning dashboard built using Streamlit,
+Plotly and Scikit-Learn.
 
+The dashboard enables users to explore NASA's Kepler Exoplanet dataset,
+perform exploratory data analysis, predict exoplanets using a trained machine
+learning model, evaluate model performance and understand feature importance.
 
-
-st.markdown("""
-    <div class="section-title">
-
-    🚀 Mission Brief
-
-    </div>
-    """, unsafe_allow_html=True)
-
-st.markdown("""
-
-    <div class="glass">
-
-    ExoVision is an AI-powered dashboard designed for exploring NASA's Kepler Exoplanet Search dataset.
-
-    The application combines exploratory data analysis, interactive visualizations, and machine learning prediction into a unified experience inspired by a futuristic mission control center.
-
-    </div>
-
-    """, unsafe_allow_html=True)
-
+</div>
+""",
+unsafe_allow_html=True
+)
 
 st.markdown("---")
 
-st.markdown("""
-
-<div style="text-align:center;color:#8da8d6">
+st.markdown(
+"""
+<div style="text-align:center;color:#9fc9ff;">
 
 Made with ❤️ using
-
 Python • Streamlit • Plotly • Scikit-Learn
 
 </div>
-
-""", unsafe_allow_html=True)
+""",
+unsafe_allow_html=True
+)
