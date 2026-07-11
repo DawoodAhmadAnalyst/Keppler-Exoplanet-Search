@@ -17,3 +17,10 @@ def load_model():
     Load the trained machine learning model.
     """
     return joblib.load("best_model.joblib")
+
+def load_params():
+    """
+    Load the trained machine learning model.
+    """
+    return joblib.load("artifacts.joblib")
+    

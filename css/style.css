@@ -184,7 +184,7 @@ a:hover{
 } */
 
 .hero-sub{
-    max-width: 780px;
+    margin-top: 20px;
 }
 
 .hero-title{
@@ -225,6 +225,17 @@ a:hover{
     color:var(--dim);
     font-size:1rem;
     line-height:1.8;
+}
+
+
+.subtitle{
+    margin-top: 10px;
+    margin-left: 20px;
+}
+
+.section-title{
+    margin-top: 10px;
+    margin-left: 20px;
 }
 
 
@@ -352,6 +363,118 @@ a:hover{
 }
 
 
+/* Select Box */
+.stSelectbox > div > div{
+    background:linear-gradient(145deg,rgba(20,30,55,.95),rgba(10,16,30,.95)) !important;
+    border:1px solid rgba(109,216,255,.18) !important;
+    border-radius:14px !important;
+    min-height:50px;
+    transition:all .25s ease;
+    box-shadow: inset 0 1px rgba(255,255,255,.03);
+}
+
+.stSelectbox > div > div:hover{
+    border-color:#6dd8ff !important;
+    box-shadow:0 0 18px rgba(109,216,255,.18);
+}
+
+.stSelectbox div[data-baseweb="select"]{
+    color:white !important;
+    font-weight:600;
+}
+
+.stSelectbox svg{
+    color:#6dd8ff !important;
+    transition:.25s;
+}
+
+.stSelectbox:hover svg{
+    transform:rotate(180deg);
+}
+
+div[role="listbox"]{
+    background:#10192d !important;
+    border-radius:14px;
+    border:1px solid rgba(109,216,255,.15);
+}
+
+div[role="option"]{
+    color:white !important;
+    transition:.2s;
+}
+
+div[role="option"]:hover{
+    background:rgba(109,216,255,.12) !important;
+}
+
+
+
+/* Toggle Label */
+div[data-testid="stWidgetLabel"] p{
+    color: var(--text);
+    font-family: "Space Grotesk", sans-serif;
+    font-size: .95rem;
+    font-weight: 600;
+    letter-spacing: .3px;
+}
+
+/* Toggle Track */
+[data-baseweb="checkbox"] > div{
+    width:58px !important;
+    height:30px !important;
+    border-radius:50px !important;
+    background:rgba(255,255,255,.10) !important;
+    border:1px solid rgba(255,255,255,.12);
+    transition:all .25s ease;
+}
+
+/* Hover */
+[data-baseweb="checkbox"]:hover > div{
+    border-color:rgba(109,216,255,.35);
+    box-shadow: 0 0 10px rgba(109,216,255,.20);
+}
+
+/* Toggle Knob */
+[data-baseweb="checkbox"] > div > div{
+    width:24px !important;
+    height:24px !important;
+    margin:2px;
+    border-radius:50% !important;
+    background:white !important;
+    transition:all .25s ease;
+    box-shadow: 0 0 10px rgba(255,255,255,.20);
+}
+
+[data-baseweb="checkbox"][aria-checked="true"] > div{
+    background: linear-gradient(90deg, var(--primary), var(--secondary)) !important;
+    border-color:transparent;
+    box-shadow: 0 0 15px rgba(109,216,255,.35);
+}
+
+[data-baseweb="checkbox"][aria-checked="true"] > div > div{
+    background:white !important;
+    box-shadow: 0 0 12px rgba(255,255,255,.45);
+}
+
+.metric-caption{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-top:12px;
+    padding:10px 14px;
+    border-radius:10px;
+    background:rgba(255,255,255,.03);
+    border:1px solid rgba(255,255,255,.05);
+    color:var(--dim);
+    font-size:.9rem;
+}
+
+.metric-caption span{
+    color:var(--gold);
+    font-weight:700;
+    font-family:"IBM Plex Mono", monospace;
+}
+
 
 /* Panel */
 .panel{
@@ -361,6 +484,7 @@ a:hover{
     border:1px solid rgba(255,255,255,.08);
     border-radius:22px;
     padding:28px;
+    margin-top:24px;
     margin-bottom:24px;
     overflow:hidden;
     backdrop-filter:blur(14px);
@@ -406,6 +530,119 @@ a:hover{
     border-radius:2px;
     background: linear-gradient(90deg,var(--gold),transparent);
 }
+
+
+.group-label{
+    margin-bottom:18px;
+    padding:12px 16px;
+    background:rgba(255,255,255,.05);
+    border:1px solid rgba(255,255,255,.08);
+    border-left:4px solid #41d6ff;
+    border-radius:12px;
+    color:#eef5ff;
+    font-weight:700;
+    font-size: 14px;
+    letter-spacing:.5px;
+    text-transform:uppercase;
+}
+
+/* ---------- Buttons ---------- */
+
+div.stButton > button, div[data-testid="stButton"] > button {
+    width: 100%;
+    height: 52px;
+    border-radius: 14px;
+    border: 1px solid rgba(255,255,255,0.15);
+    background: rgba(255,255,255,0.06);
+    backdrop-filter: blur(14px);
+    color: #eef5ff;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: .3px;
+    transition: all .25s ease;
+}
+
+
+div.stButton > button:hover {
+    border-color: #41d6ff;
+    transform: translateY(-2px);
+    box-shadow:0 0 18px rgba(65,214,255,.35);
+    background:rgba(65,214,255,.10);
+    color:white;
+}
+
+
+div.stButton > button:active{
+    transform:scale(.98);
+}
+
+div.stButton > button:focus{
+    box-shadow:none !important;
+}
+
+
+
+div.stButton:last-child > button{
+    background:linear-gradient(135deg,#00c6ff,#0072ff);
+    border:none;
+    color:white;
+    font-size:17px;
+    font-weight:700;
+    height:60px;
+}
+
+
+/* ---------- Number Input ---------- */
+
+div[data-testid="stNumberInput"]{
+    margin-bottom:16px;
+}
+
+div[data-testid="stNumberInput"] label{
+    color:#d8e7ff !important;
+    font-size:13px;
+    font-weight:600;
+    letter-spacing:.3px;
+    margin-bottom:6px;
+}
+
+div[data-testid="stNumberInput"] input{
+    background:rgba(255,255,255,.05) !important;
+    border:1px solid rgba(255,255,255,.12) !important;
+    border-radius:12px !important;
+    color:#eef5ff !important;
+    padding:12px 14px !important;
+    font-size:14px;
+    transition:.25s;
+}
+
+div[data-testid="stNumberInput"] input:hover{
+    border-color:#41d6ff !important;
+}
+
+div[data-testid="stNumberInput"] input:hover{
+    border-color:#41d6ff !important;
+}
+
+
+div[data-testid="stNumberInput"] button{
+    background:transparent;
+    border:none;
+    color:#8fdcff;
+    transition:.2s;
+}
+
+div[data-testid="stNumberInput"] button:hover{
+    color:white;
+    background:rgba(65,214,255,.15);
+}
+
+div[data-testid="stNumberInput"] button{
+    display:none;
+}
+
+
+
 
 
 
