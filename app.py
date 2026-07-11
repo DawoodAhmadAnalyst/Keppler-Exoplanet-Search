@@ -86,9 +86,6 @@ local_css("css/style.css")
 # ==================================================
 
 
-df = load_data()
-model = load_model()
-artifacts = build_pipeline_artifacts(len(df))
 
 
 LABELS = {"0": "False Positive", "1": "Confirmed"}
@@ -121,6 +118,10 @@ GROUP_LABELS = {
     'planet': 'Planet Properties — derived quantities',
     'star':   'Host Star — stellar properties',
 }
+
+df = load_data()
+model = load_model()
+artifacts = build_pipeline_artifacts(len(df))
 
 # ==================================================
 # Sidebar Navigation
